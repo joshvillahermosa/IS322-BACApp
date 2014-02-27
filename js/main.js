@@ -3,4 +3,5 @@ $(document).ready(function(){
 	var mobileNav = new Snap({
 		element: document.getElementById('content')
 	});
+
 })
