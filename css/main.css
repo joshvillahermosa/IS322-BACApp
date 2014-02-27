@@ -99,6 +99,7 @@ Boilerplate: Gunter
     background: url('../img/CMO.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
 }
 
 #gunter h1{
