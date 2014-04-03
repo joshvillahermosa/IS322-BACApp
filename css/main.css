@@ -95,19 +95,6 @@ textarea {
 /****************************************************************************
 Boilerplate: Gunter 
 *****************************************************************************/
-#gunter{
-    background: url('../img/CMO.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-}
-
-#gunter h1{
-    background-color: gray;
-    color: white;
-    opacity: 0.8;
-    border-radius: 25px;
-}
 
 
 @media(min-width: 1200px)
