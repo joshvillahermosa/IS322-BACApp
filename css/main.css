@@ -106,6 +106,15 @@ Boilerplate: Gunter
     background-color: white;
 }
 
+/**
+Side Tab 
+**/
+
+.side-tab {
+    border: none;
+    width: 100%;
+}
+
 
 
 
