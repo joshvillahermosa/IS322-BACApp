@@ -1,4 +1,4 @@
-var You = new Backbone.View.extend({
+var You =  Backbone.View.extend({
 	el: '#load',
 
 	initialize: function(){
