@@ -9,6 +9,7 @@ var Area = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.area);
+		this.createMap();
 	},
 
 	createMap: function(){
