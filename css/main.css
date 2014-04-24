@@ -91,19 +91,16 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
-/****************************************************************************
-Boilerplate: Gunter 
-*****************************************************************************/
-
-
-@media(min-width: 1200px)
-{
-.jumbotron {height: 400px;}
+.jumbotron{
+    background-image: url('../img/garden.jpg');
+    /*background: center center fixed;
+    background-size: cover;*/ 
+    color: white;   
 }
 
+
 #content{
-    background-color: white;
+    background-color: #FF8080;
 }
 
 /**
@@ -112,7 +109,7 @@ Side Tab
 
 .side-tab {
     border: none;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 
