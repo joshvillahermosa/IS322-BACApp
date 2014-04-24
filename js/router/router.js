@@ -17,7 +17,7 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	loadUserStats: function(){
-		this.you();
+		this.you.render();
 	}
 });
 
