@@ -1,14 +1,15 @@
 var AppRouter = Backbone.Router.extend({
 	routes:{
 		"":"loadUserStats",
-		"BAC": "testAlert",
-		"BAC": "testAlert",
-		"BAC": "testAlert"
+		"BAC": "loadBAC",
+		"Person": "loadUserStats",
+		//"BAC": "testAlert"
 	},
 
 	initialize: function(){		
 		//this.bac = new BAC();
 		this.you  = new You();
+		//this.bac  = new BAC();
 	},
 	
 
@@ -18,6 +19,10 @@ var AppRouter = Backbone.Router.extend({
 
 	loadUserStats: function(){
 		this.you.render();
+	},
+
+	loadBAC: function(){
+		this.bac.render();
 	}
 });
 
