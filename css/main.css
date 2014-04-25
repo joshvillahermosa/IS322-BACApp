@@ -116,10 +116,13 @@ Side Tab
     margin-bottom: 5px;
 }
 
-
-
-
-
+/*Only temporary*/
+#map{
+    width: 100%;
+    height: 50%;
+    border: solid black 1px;
+    border-radius: 5px;
+}
 
 
 
