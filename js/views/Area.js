@@ -9,7 +9,9 @@ var Area = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.area);
-		this.createMap();
+		//this.createMap();
+		google.maps.event.addDomListener(window, 'load', this.createMap);
+		
 	},
 
 	createMap: function(){
@@ -18,7 +20,6 @@ var Area = Backbone.View.extend({
 			zoom: 8
 		}
 		var map = new google.maps.Map(document.getElementById(this.canvasId), mapOptions);
-		google.maps.event.addDomListener(window, 'load', initialize);
 	}
 
 });
