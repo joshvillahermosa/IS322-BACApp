@@ -100,7 +100,11 @@ textarea {
 
 
 #content{
-    background-color: #FF8080;
+    background-color: #FFFFFF;
+}
+
+body{
+    background-color: #878A75;
 }
 
 /**
@@ -125,6 +129,10 @@ Side Tab
 }
 #load{
     height: 200px;
+}
+
+.center{
+    text-align: center;
 }
 
 /*/*/
