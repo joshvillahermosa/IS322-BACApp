@@ -9,8 +9,9 @@ var Area = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.area);
-		//this.getLocation();
-		this.createMap(this.lat, this.lng);
+		this.getLocation();
+		console.log(this.lat+' '+this.lng+' - Confirmed');
+		//this.createMap(this.lat, this.lng);
 		//google.maps.event.addDomListener(window, 'load', this.createMap);
 		
 	},
@@ -28,7 +29,9 @@ var Area = Backbone.View.extend({
 	},
 
 	getLocation: function(){
+		console.log('Test - getGeolocation');
 		if(navigator.geolocation){
+			//navigator.geolocation.getCurrentPosition(this.setLatLng);
 			navigator.geolocation.getCurrentPosition(this.setLatLng);
 		}else{
 			alert('Either you have no internet connection or your browser is not supported');
@@ -36,8 +39,11 @@ var Area = Backbone.View.extend({
 	},
 
 	setLatLng: function(position){
-		return this.lat = position.coords.latitude;
-		return this.lng = position.coords.longitude;
+		console.log('Test - setLatLng');
+		this.lat = position.coords.latitude;
+		console.log('Test - setLatLng-lat');
+		this.lng = position.coords.longitude;
+		console.log('Test - setLatLng-lng');
 		console.log(this.lat+' '+this.lng);
 	},
 
