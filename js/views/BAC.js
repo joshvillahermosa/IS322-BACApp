@@ -13,13 +13,28 @@ var BAC =  Backbone.View.extend({
 		//Alex
 	}
 	/*var weight = 160;
-	var male_r = 0.73;
+	var gender_male = 0.73;
+	var gender_female = 0.66
 	var hour = 1;
 
+
  beer_bac = function (oz){
-var test_value =((oz * 4.5)/100* (5.14) / (weight * male_r) - (0.015 * hour)) //function works but needs fixing
-console.log(Match.round(test_value * 100)/ 100) //fixed issued with rounding
+var test = ((oz * 4.5)/100* (5.14) / (weight * gender_male) - (0.015 * hour))
+//return test;
+console.log(Math.round(test *100)/100)
 };
-beer_bac(36);*/ 
+beer_bac(36); // numeric value for ounces		
+
+wine_bac = function (oz){ //additional function for wine
+var test = ((oz * 12)/100* (5.14) / (weight * gender_male) - (0.015 * hour))
+console.log(Math.round(test * 100)/100)
+};
+wine_bac(20); //how many ounces
+
+hardLiqour_bac = function (oz){ //additional function for hard liqour
+var test = ((oz * 40)/100* (5.14) / (weight * gender_female) - (0.015 * hour))
+console.log(Math.round(test * 100)/100)
+};
+hardLiqour_bac(6); //ounces
 
 });
