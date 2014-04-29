@@ -4,7 +4,8 @@ var AppRouter =  Backbone.Router.extend({
 		"BAC": "loadBAC",
 		"Person": "loadUserStats",
 		"Stats": "loadStats",
-		"Area": "loadArea"
+		"Area": "loadArea",
+		"Manual": "loadManual"
 	},
 
 	initialize: function(){		
@@ -12,8 +13,8 @@ var AppRouter =  Backbone.Router.extend({
 		this.you  = new You();
 		this.bac  = new BAC();
 		this.stats = new Stats();
-		this.area = new Area()
-
+		this.area = new Area();
+		this.manual = new Manual();
 	},
 	
 
@@ -35,6 +36,10 @@ var AppRouter =  Backbone.Router.extend({
 
 	loadArea: function(){
 		this.area.render();
+	},
+
+	loadManual: function(){
+		this.manual.render();
 	}
 });
 
