@@ -38,7 +38,9 @@ var AppRouter =  Backbone.Router.extend({
 	}
 });
 
-var appRouter = new AppRouter();
+$(document).ready(function(){
+	var appRouter = new AppRouter();
+});
 
 $(function  () {
 	Backbone.history.start();
