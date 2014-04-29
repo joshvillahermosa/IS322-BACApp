@@ -35,6 +35,6 @@ hardLiqour_bac = function (oz){ //additional function for hard liqour
 var test = ((oz * 40)/100* (5.14) / (weight * gender_female) - (0.015 * hour))
 console.log(Math.round(test * 100)/100)
 };
-hardLiqour_bac(6); //ounces
+hardLiqour_bac(6); //ounces */
 
 });
