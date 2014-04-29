@@ -18,8 +18,8 @@ var hour = 1;
 
 
  beer_bac = function (oz){
-console.log((oz * 4.5)/100* (5.14) / (weight * male_r) - (0.015 * hour))
+console.log((oz * 4.5)/100* (5.14) / (weight * male_r) - (0.015 * hour)) function works but needs fixing
 };
-beer_bac(36);*/  testing out function
+beer_bac(36);*/ 
 
 });
