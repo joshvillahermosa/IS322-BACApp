@@ -12,5 +12,14 @@ var BAC =  Backbone.View.extend({
 	calcBac: function(){
 		//Alex
 	}
+	/*var weight = 160;
+	var male_r = 0.73;
+	var hour = 1;
+
+ beer_bac = function (oz){
+var test_value =((oz * 4.5)/100* (5.14) / (weight * male_r) - (0.015 * hour)) //function works but needs fixing
+console.log(Match.round(test_value * 100)/ 100) //fixed issued with rounding
+};
+beer_bac(36);*/ 
 
 });
