@@ -2,7 +2,8 @@ var Nav =  Backbone.View.extend({
 	el: 'body',
 
 	events:{
-		"click #nav": "openNav"
+		"click #nav": "openNav",
+		"click div.snap-drawer button": "closeNav"
 	},
 
 	initialize: function(){
@@ -16,10 +17,14 @@ var Nav =  Backbone.View.extend({
 	},
 
 	openNav: function(){
+		this.snap.enable();
 		this.snap.open('left');
+		this.snap.disable();
 	},
 
 	closeNav: function(){
-		this.snap.close();	
+		this.snap.enable();
+		this.snap.close();
+		this.snap.disable();
 	}
 })
