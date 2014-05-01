@@ -29,27 +29,22 @@ var AppRouter =  Backbone.Router.extend({
 
 	loadUserStats: function(){
 		this.you.render();
-		this.nav.closeNav();
 	},
 
 	loadBAC: function(){
 		this.bac.render();
-		this.nav.closeNav();
 	},
 
 	loadStats: function(){
 		this.stats.render();
-		this.nav.closeNav();
 	},
 
 	loadArea: function(){
 		this.area.render();
-		this.nav.closeNav();
 	},
 
 	loadManual: function(){
 		this.manual.render();
-		this.nav.closeNav();
 	}
 });
 
