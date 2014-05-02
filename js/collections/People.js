@@ -1,3 +1,4 @@
-var window.People = Backbone.Collection.extend({
-	model: Person
+window.People = Backbone.Collection.extend({
+	model: Person,
+	localStorage: new Backbone.LocalStorage('BAC-People')
 })
