@@ -1,6 +1,6 @@
 var AppRouter =  Backbone.Router.extend({
 	routes:{
-		"":"loadUserStats",
+		"":"checkFirstTimeUse",
 		"BAC": "loadBAC",
 		"Person": "loadUserStats",
 		"Stats": "loadStats",
@@ -20,6 +20,10 @@ var AppRouter =  Backbone.Router.extend({
 		this.area = new Area();
 		this.manual = new Manual();
 		this.nav = new Nav();
+	},
+
+	checkFirstTimeUse: function(){
+
 	},
 	
 
