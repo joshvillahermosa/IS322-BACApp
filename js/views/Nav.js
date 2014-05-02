@@ -8,7 +8,9 @@ var Nav =  Backbone.View.extend({
 
 	initialize: function(){
 		this.snap = new Snap({
-			element: document.getElementById('content')
+			element: document.getElementById('content'),
+			tapToClose: true,
+    		touchToDrag: false
 		})
 	},
 
