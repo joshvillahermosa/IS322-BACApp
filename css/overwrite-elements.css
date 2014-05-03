@@ -2,3 +2,14 @@
 { 
 background-color:#4E6AA4 !important;
 }
+.snap-drawer-left{
+  	background-color: #000000 !important; /* testing div container*/ 
+	filter:alpha(opacity=60);
+	opacity:0.6;
+}
+.btn-group-lg{	/*testing for div elements*/
+	background-color: red;
+}
+.container{
+	background-color: yellow !important; /*color coding more divs*/
+}
