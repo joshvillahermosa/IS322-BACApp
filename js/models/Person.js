@@ -1,6 +1,6 @@
 var Person = Backbone.Model.extend({
 	defaults: {
-		"firstTime": false,
+		"firstTime": true,
 		"name": "",
 		"email": "",
 		"genderBac": 0,
