@@ -4,7 +4,7 @@ var Person = Backbone.Model.extend({
 		"name": "",
 		"email": "",
 		"genderBac": 0,
-		"age": 21,
+		"birthday": "",
 		"weight": 100
 	}
 })
