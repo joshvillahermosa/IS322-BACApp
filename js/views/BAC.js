@@ -2,6 +2,8 @@ var BAC =  Backbone.View.extend({
 	el: '#load',
 
 	initialize: function(){
+		this.user = new You();
+		this.you = this.user.retrieveProfile();
 		this.calc= '<div class="row" style="text-align: center"><div class="col-sm-12"><button class="btn btn-default" style="display: block;width: 100%">Beer</button></div><div class="col-sm-12"><button class="btn btn-warning" style="display: block;width: 100%">Warning</button></div><div class="col-sm-12"><button class="btn btn-info" style="display: block;width: 100%">Wine</button></div><div class="col-sm-12"><button class="btn btn-default btn-lg" style="display: block;width: 100%">%BAC%</button><buton class="btn btn-danger">Calculate</button></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
 	},
 
@@ -14,8 +16,8 @@ var BAC =  Backbone.View.extend({
 	calcBac: function(oz, weight, gender, hour){
 		//Alex
 		var test = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
-		//return test;
-		console.log(Math.round(test *100)/100)
+		console.log(Math.round(test *100)/100);
+		return test;
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
