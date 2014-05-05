@@ -9,6 +9,8 @@ var BAC =  Backbone.View.extend({
 		this.$el.html(this.calc);
 	},
 
+	//Use to recalculate funciton when view is loaded
+
 	calcBac: function(oz, weight, gender, hour){
 		//Alex
 		var test = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
