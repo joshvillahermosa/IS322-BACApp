@@ -1,10 +1,16 @@
 var BAC =  Backbone.View.extend({
-	el: '#load',
+	el: '#load', 
+
+	events: {
+		'click #beer': 'calcBACBeer',
+		'click #wine': 'calcBACWine',
+		'click #hl': 'calcBACHl', 
+	},
 
 	initialize: function(){
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
-		this.calc= '<div class="row" style="text-align: center"><div class="col-sm-12"><button class="btn btn-default" style="display: block;width: 100%">Beer</button></div><div class="col-sm-12"><button class="btn btn-warning" style="display: block;width: 100%">Warning</button></div><div class="col-sm-12"><button class="btn btn-info" style="display: block;width: 100%">Wine</button></div><div class="col-sm-12"><button class="btn btn-default btn-lg" style="display: block;width: 100%">%BAC%</button><buton class="btn btn-danger">Calculate</button></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
+		this.calc= '<div class="row" style="text-align: center"><div class="col-sm-12"><button class="btn btn-default" style="display: block;width: 100%" id="beer">Beer</button></div><div class="col-sm-12"><button class="btn btn-warning" style="display: block;width: 100%" id="wine">Wine</button></div><div class="col-sm-12"><button class="btn btn-info" style="display: block;width: 100%" id="hl">Hard Liqour</button></div><div class="col-sm-12"><div id="BAC" class="well" style="display: block;width: 100%"><span>Your BAC level is: </span><span id="BACLevel"></span></div></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
 	},
 
 	render: function(){
@@ -21,11 +27,26 @@ var BAC =  Backbone.View.extend({
 
 	*/
 
+	calcBACBeer: function(){
+		var bac = this.calcBac(0.05, this.you.weight, this.you.genderBac, 1);
+	},
+
+	calcBACWine: function(){
+		var bac = this.calcBac(0.11, this.you.weight, this.you.genderBac, 1);
+		
+	},
+
+	calcBACHl: function(){
+		var bac = this.calcBac(0.4, this.you.weight, this.you.genderBac, 1);
+	},
+
 	calcBac: function(oz, weight, gender, hour){
 		//Alex
-		var test = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
-		console.log(Math.round(test *100)/100);
-		return test;
+		var bac = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
+		console.log(Math.round(bac *100)/100);
+		$('#BACLevel').empty();
+		$('#BACLevel').append(bac);
+		return bac;
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
