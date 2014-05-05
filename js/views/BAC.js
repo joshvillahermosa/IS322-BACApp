@@ -13,6 +13,14 @@ var BAC =  Backbone.View.extend({
 
 	//Use to recalculate funciton when view is loaded
 
+	/*Notes
+	Temporary data - Estamated dummy data
+		Beer avg = 0.05;
+		Wine avg = 0.11;
+		HL avg = 0.4;
+
+	*/
+
 	calcBac: function(oz, weight, gender, hour){
 		//Alex
 		var test = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
