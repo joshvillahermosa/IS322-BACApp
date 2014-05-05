@@ -38,5 +38,7 @@ var Setup =  Backbone.View.extend({
 
 		this.newSave.add(personSetup);
 		personSetup.save();
+
+		window.location.href = "#/BAC";
 	}
 })
