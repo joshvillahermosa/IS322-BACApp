@@ -20,10 +20,23 @@ var AppRouter =  Backbone.Router.extend({
 		this.area = new Area();
 		this.manual = new Manual();
 		this.nav = new Nav();
+		this.people = new People();
+		this.setup = new Setup();
 	},
 
 	checkFirstTimeUse: function(){
-
+		if(this.people.localStorage.records[0] == null){
+			console.log('No records -- creating new one...');
+			this.setup.render();
+		}else{
+			var userId = this.people.localStorage.records[0];
+			console.log('User ID detected -- searching profile');
+			this.people.localStorage.find({"id": userId});
+			console.log('User profile found: ');
+			console.log(this.people.localStorage.find({"id": userId}));
+			//this.people.localStorage.update({"id":"e8070905-0e97-6abb-51ec-9c2e0645aeb1", "name": "Jess"}) // <-- how to update saved items in local storage
+			this.bac.render();
+		}
 	},
 	
 
