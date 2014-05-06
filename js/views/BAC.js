@@ -15,6 +15,7 @@ var BAC =  Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.calc);
+		this.getStartTime();
 	},
 
 	//Use to recalculate funciton when view is loaded
@@ -42,6 +43,17 @@ var BAC =  Backbone.View.extend({
 
 	poundsToKilo: function (weight){
 		return weight/2.2046;
+	},
+
+	getStartTime: function(){
+		var date = new Date();
+		var time = {
+			hour: 0,
+			min: 0
+		};
+		time.hour = date.getHours()
+		time.min = date.getMinutes()
+		console.log(time.hour +':'+time.min);
 	},
 
 	calcBac: function(acv, oz, weight, gender, hour){
