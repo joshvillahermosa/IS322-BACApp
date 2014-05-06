@@ -1,15 +1,22 @@
 .navbar-default
 { 
-background-color:#4E6AA4 !important;
+background-color:#FF6C47 !important;    /*change color*/
 }
 .snap-drawer-left{
-  	background-color: #000000 !important; /* testing div container*/ 
-	filter:alpha(opacity=60);
-	opacity:0.6;
+  	background-color: #D3D3CE !important; /* testing div container*/ 
+	/*filter:alpha(opacity=60);
+	opacity:0.6;*/
 }
-.btn-group-lg{	/*testing for div elements*/
+/*.btn-group-lg{	/*testing for div elements inside left-side menu*/
 	background-color: red;
-}
+}*/
+/*
 .container{
 	background-color: yellow !important; /*color coding more divs*/
 }
+.snap-content{
+	background-color: red !important;    /*finding where all the divs are*/
+}
+/*.snapjs-left{
+	background-color: green; /*found overall div container, overwrites snap-drawe-left bug needs to be fixed*/  
+} */
