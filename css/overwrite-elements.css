@@ -3,13 +3,13 @@
 background-color:#FF6C47 !important;    /*change color*/
 }
 .snap-drawer-left{
-  	background-color: #000000 !important; /* testing div container*/ 
+  	background-color: #D3D3CE !important; /* testing div container*/ 
 	/*filter:alpha(opacity=60);
 	opacity:0.6;*/
 }
-.btn-group-lg{	/*testing for div elements inside left-side menu*/
+/*.btn-group-lg{	/*testing for div elements inside left-side menu*/
 	background-color: red;
-}
+}*/
 /*
 .container{
 	background-color: yellow !important; /*color coding more divs*/
@@ -17,6 +17,6 @@ background-color:#FF6C47 !important;    /*change color*/
 .snap-content{
 	background-color: red !important;    /*finding where all the divs are*/
 }
-.snapjs-left{
+/*.snapjs-left{
 	background-color: green; /*found overall div container, overwrites snap-drawe-left bug needs to be fixed*/  
-} 
+} */
