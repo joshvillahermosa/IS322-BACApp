@@ -6,6 +6,7 @@ var PersonBAC = Backbone.Model.extend({
 		"lat": 0,
 		"lng": 0,
 		"timeStart": "",
-		"timeFinish": ""
+		"timeFinish": "",
+		"manualEnter": false
 	}
 })
