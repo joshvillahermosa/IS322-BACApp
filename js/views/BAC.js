@@ -28,22 +28,42 @@ var BAC =  Backbone.View.extend({
 	*/
 
 	calcBACBeer: function(){
-		var bac = this.calcBac(0.05, this.you.weight, this.you.genderBac, 1);
+		var bac = this.calcBac(12, 0.054, this.you.weight, this.you.genderBac, 1);
 	},
 
 	calcBACWine: function(){
-		var bac = this.calcBac(0.11, this.you.weight, this.you.genderBac, 1);
+		var bac = this.calcBac(12, 0.11, this.you.weight, this.you.genderBac, 1);
 		
 	},
 
 	calcBACHl: function(){
-		var bac = this.calcBac(0.4, this.you.weight, this.you.genderBac, 1);
+		var bac = this.calcBac(12, 0.4, this.you.weight, this.you.genderBac, 1);
 	},
 
-	calcBac: function(oz, weight, gender, hour){
+	poundsToKilo: function (weight){
+		return weight/2.2046;
+	},
+
+	calcBac: function(acv, oz, weight, gender, hour){
 		//Alex
-		var bac = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
-		console.log(Math.round(bac *100)/100);
+		//var bac = ((oz * 4.5)/100* (5.14) / (weight * gender) - (0.015 * hour));
+		//console.log(Math.round(bac *100)/100);
+		
+		/*var top = 0.806 * oz * 1.2;
+		var kg = this.poundsToKilo(weight);
+		var bottom = gender * kg;
+		var left = 0.017 - hour;
+
+		var bac = (top/bottom) - left;*/
+
+		//var bac = ((oz * 5.14)/(weight * gender )) -( 0.15 * hour);
+		//Gets negative value...
+
+		//Create formula based on this - http://www.endmemo.com/medical/bac.php
+		var bac = (((acv * oz) * 5.14)/(weight * gender )) -( 0.015 * hour);
+		
+		console.log(bac);
+
 		$('#BACLevel').empty();
 		$('#BACLevel').append(bac);
 		return bac;
