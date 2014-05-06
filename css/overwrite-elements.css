@@ -1,15 +1,16 @@
 .navbar-default
 { 
-background-color:#4E6AA4 !important;
+background-color:#FF6C47 !important;    /*change color*/
 }
 .snap-drawer-left{
   	background-color: #000000 !important; /* testing div container*/ 
-	filter:alpha(opacity=60);
-	opacity:0.6;
+	/*filter:alpha(opacity=60);
+	opacity:0.6;*/
 }
 .btn-group-lg{	/*testing for div elements inside left-side menu*/
 	background-color: red;
 }
+/*
 .container{
 	background-color: yellow !important; /*color coding more divs*/
 }
