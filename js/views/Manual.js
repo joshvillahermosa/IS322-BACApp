@@ -2,7 +2,7 @@ var Manual =  Backbone.View.extend({
 	el: '#load',
 
 	events:{
-		'click #manualBac': 'calcBac'
+		'click #manualBac': 'addBACLevel'
 	},
 
 	initialize: function(){
@@ -25,5 +25,56 @@ var Manual =  Backbone.View.extend({
 		var bac = this.manualBac.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
 		$('#BACLevel').empty();
 		$('#BACLevel').append('<p>'+bac+'</p>');
+		return bac;
+	},
+
+	getTime: function(){
+		var date = new Date();
+		var time = {
+			hour: 0,
+			min: 0
+		};
+		time.hour = date.getHours();
+		time.min = date.getMinutes();
+
+		var curTime = time.hour+':'+time.min;
+		return curTime;
+	},
+
+	getDate: function(){
+		var date2 = new Date();
+		var date = {
+			year: 0,
+			month: 0,
+			day:0
+		};
+
+		date.year = date2.getFullYear();
+		date.month = date2.getMonth()+1;
+		date.day = date2.getDate();
+
+		var today = date.year+'-'+date.month+'-'+date.day;
+
+		return today;
+	},
+
+	addBACLevel: function(){
+		console.log(this.you);
+		var bac = this.calcBac();
+		var time = this.getTime();
+		var date = this.getDate();
+
+		var newBac = new PersonBAC({
+			"date": date,
+			"bacLevelHigh": bac,
+			"bacLevelCur": 0,
+			"lat": 0,
+			"lng": 0,
+			"timeStart": time,
+			"timeFinish": time,
+			"manualEnter": false
+		});
+
+		console.log(newBac);
 	}
 })
