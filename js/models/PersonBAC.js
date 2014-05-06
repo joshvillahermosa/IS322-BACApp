@@ -3,6 +3,8 @@ var PersonBAC = Backbone.Model.extend({
 		"date": "",
 		"bacLevel": 0,
 		"lat": 0,
-		"lng": 0
+		"lng": 0,
+		"timeStart": "",
+		"timeFinish": ""
 	}
 })
