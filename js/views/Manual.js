@@ -72,7 +72,7 @@ var Manual =  Backbone.View.extend({
 			"lng": 0,
 			"timeStart": time,
 			"timeFinish": time,
-			"manualEnter": false
+			"manualEnter": true
 		});
 
 		console.log(newBac);
