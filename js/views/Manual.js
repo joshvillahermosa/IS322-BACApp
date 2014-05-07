@@ -75,6 +75,9 @@ var Manual =  Backbone.View.extend({
 			"manualEnter": true
 		});
 
+		this.you.BACLevels.push(newBac);
+		people.localStorage.update(this.you);
+
 		console.log(newBac);
 	}
 })
