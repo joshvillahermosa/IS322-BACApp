@@ -7,7 +7,7 @@ background-color:#FF6C47 !important;    /*change color*/
 	/*filter:alpha(opacity=60);
 	opacity:0.6;*/
 }
-/*.btn-group-lg{	/*testing for div elements inside left-side menu*/
+/*.btn-group-lg{	/*testing for div elements inside left-side menu
 	background-color: red;
 }*/
 /*
@@ -18,5 +18,8 @@ background-color:#FF6C47 !important;    /*change color*/
 	background-color: red !important;    /*finding where all the divs are*/
 }
 /*.snapjs-left{
-	background-color: green; /*found overall div container, overwrites snap-drawe-left bug needs to be fixed*/  
+	background-color: green; /*found overall div container, overwrites snap-drawe-left bug needs to be fixed 
 } */
+.snap-content{
+	background-color: #F0F0EE !important;
+}
