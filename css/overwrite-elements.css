@@ -26,3 +26,6 @@ background-color:#FF6C47 !important;    /*change color*/
 .btn-group-vertical.btn-group-lg{ /*trying to find out the right size*/
 	width:185px;
 }
+.row{
+	width: 250px; /*adjusted snap menu*/
+}
