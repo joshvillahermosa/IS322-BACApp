@@ -23,3 +23,6 @@ background-color:#FF6C47 !important;    /*change color*/
 .snap-content{
 	background-color: #F0F0EE !important;
 }
+.btn-group-vertical.btn-group-lg{ /*trying to find out the right size*/
+	width:185px;
+}
