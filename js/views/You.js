@@ -43,4 +43,6 @@ var You =  Backbone.View.extend({
 		$('#weight').attr('value', user.weight);
 		//Needs to find a way to enable user selected radio button
 	}
-})
+});
+
+var you = new You();
