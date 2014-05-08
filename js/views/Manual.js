@@ -63,13 +63,14 @@ var Manual =  Backbone.View.extend({
 		var bac = this.calcBac();
 		var time = this.getTime();
 		var date = this.getDate();
+		var location = area.getLocation();
 
 		var newBac = new PersonBAC({
 			"date": date,
 			"bacLevelHigh": bac,
 			"bacLevelCur": 0,
-			"lat": 0,
-			"lng": 0,
+			"lat": location.lat,
+			"lng": location.lng,
 			"timeStart": time,
 			"timeFinish": time,
 			"manualEnter": true
