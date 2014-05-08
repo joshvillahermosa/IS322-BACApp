@@ -9,8 +9,8 @@ var Area = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.area);
-		this.getLocation();
-		console.log(this.lat+' '+this.lng+' - Confirmed');
+		var curLocation = this.getLocation();
+		console.log(curLocation.lat+' '+curLocation.lng+' - Confirmed');
 		this.createMap(this.lat, this.lng);
 		//google.maps.event.addDomListener(window, 'load', this.createMap);
 		
@@ -21,17 +21,16 @@ var Area = Backbone.View.extend({
 		//var mlong = lng;
 		//alert(lat+' '+lng);
 		var mapOptions = {
-			center: new google.maps.LatLng(40.7430473, -74.1777488),
-			//center: new google.maps.LatLng(lat, lng),
+			//center: new google.maps.LatLng(40.7430473, -74.1777488),
+			center: new google.maps.LatLng(lat, lng),
 			zoom: 15
 		}
 		var map = new google.maps.Map(document.getElementById(this.canvasId), mapOptions);
 	},
 
 	getLocation: function(){
-		var loc = {"lat": 0, "lng":0};
 		if(navigator.geolocation){
-			loc = navigator.geolocation.getCurrentPosition(this.setLatLng);
+			var location = navigator.geolocation.getCurrentPosition(this.setLatLng);
 			/*navigator.geolocation.getCurrentPosition(function(position){
 				var location = {"lat": 0, "lng":0};
 				location.lat = position.coords.latitude;
@@ -40,19 +39,21 @@ var Area = Backbone.View.extend({
 			});*/
 		}else{
 			alert('Either you have no internet connection or your browser is not supported');
+			console.log('Either you have no internet connection or your browser is not supported');
+			var location = null;
 		}
-		console.log(loc.lat+' '+loc.lng);
+		return location;
 	},
 
 	setLatLng: function(position){
-		var setLoc = {"lat": 0, "lng":0};
-		console.log('Test - setLatLng');
-		setLoc.lat = position.coords.latitude;
-		console.log('Test - setLatLng-lat');
-		setLoc.lng = position.coords.longitude;
-		console.log('Test - setLatLng-lng');
-		console.log(setLoc.lat+' '+setLoc.lng);
-		return setLoc;
+		var location = {lat: 0, lng: 0};
+		console.log('setLatLng() called');
+		location.lat = position.coords.latitude;
+		console.log('Lat recieved');
+		location.lng = position.coords.longitude;
+		console.log('Lng recieved');
+		console.log(location.lat+' '+location.lng);
+		return location;
 	},
 
 	throwErr: function(){
