@@ -3,6 +3,7 @@ var Stats =  Backbone.View.extend({
 
 	initialize: function(){
 		this.stats= '<h2>Stats</h2><canvas id="chart" width="300" height="300"></canvas>';
+		this.table = '<table class="table-striped "><thead><tr><th>Date</th><th>Highest BAC</th></tr></thead><tbody id="records"></tbody></table>';
 	},
 
 	render: function(){
@@ -25,6 +26,9 @@ var Stats =  Backbone.View.extend({
 
 		var ctx = $("#chart").get(0).getContext("2d");
 		new Chart(ctx).Bar(data);
-	}
+	},
 
+	populateTable: function(){
+		var user = 
+	}
 });
