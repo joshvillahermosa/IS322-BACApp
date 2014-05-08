@@ -39,7 +39,7 @@ var Stats =  Backbone.View.extend({
 		var userBacRecord = this.user.BACLevels.length - 1;
 
 		for(var i = userBacRecord; i >= 0; i--){
-			$('#records').append('<tr><td>'+this.user.BACLevels[i].bacLevelHigh+'</td><td>'+this.user.BACLevels[i].date+'</td></tr>');
+			$('#records').append('<tr><td>'+this.user.BACLevels[i].bacLevelHigh+' -</td><td>'+this.user.BACLevels[i].date+'</td></tr>');
 		}
 	},
 
