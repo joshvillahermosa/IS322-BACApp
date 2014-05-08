@@ -2,7 +2,7 @@ var Stats =  Backbone.View.extend({
 	el: '#load',
 
 	initialize: function(){
-		this.stats= '<h2>Stats</h2><canvas id="chart" width="500" height="300"></canvas>';
+		this.stats= '<h2>Stats</h2><canvas id="chart" width="300" height="300"></canvas>';
 		this.table = '<table class="table-striped "><thead><tr><th>Date</th><th>Highest BAC</th></tr></thead><tbody id="records"></tbody></table>';
 	},
 
@@ -17,7 +17,7 @@ var Stats =  Backbone.View.extend({
 		var bacData = this.stringDateAndBac();
 
 		var data = {
-			labels: [bacData.date.splice(0)],
+			labels: bacData.date,
 			datasets : [
 				{
 					fillColor : "rgba(220,220,220,0.5)",
