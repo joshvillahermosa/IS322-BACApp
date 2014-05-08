@@ -28,14 +28,12 @@ var Stats =  Backbone.View.extend({
 			]
 		}
 
-		options = {
-
-		};
+		var options = {
+				scaleFontSize : 9
+		}
 
 		var ctx = $("#chart").get(0).getContext("2d");
-		new Chart(ctx).Bar(data);
-
-		console.log(bacData.bacLevel);
+		new Chart(ctx).Bar(data, options);
 	},
 
 	populateTable: function(){
@@ -49,6 +47,19 @@ var Stats =  Backbone.View.extend({
 
 	stringDateAndBac: function(){
 		var userBacRecord = this.user.BACLevels.length - 1;
+		var bacRecord = {bacLevel: [], date: []};
+
+		if(userBacRecord <= 5){
+			for(var i = userBacRecord; i >= 0; i--){
+				bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
+				bacRecord.date[i] = this.user.BACLevels[i].date;
+			}
+		}else{ //Gets 5 latest records 
+			for(var i = userBacRecord; i >= (5-userBacRecord); i--){
+				bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
+				bacRecord.date[i] = this.user.BACLevels[i].date;
+			}
+		}
 		var bacRecord = {bacLevel: [], date: []};
 		for(var i = userBacRecord; i >= 0; i--){
 			bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
