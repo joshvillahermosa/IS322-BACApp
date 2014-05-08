@@ -73,6 +73,7 @@ var BAC =  Backbone.View.extend({
 
 		//Create formula based on this - http://www.endmemo.com/medical/bac.php
 		var bac = (((acv * oz) * 5.14)/(weight * gender )) -( 0.015 * hour);
+		bac = Math.round(bac * 1000) / 1000;
 		
 		console.log(bac);
 
