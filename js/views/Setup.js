@@ -25,18 +25,48 @@ var Setup =  Backbone.View.extend({
 	}*/
 
 	createProfile: function(){
+		var bar = new Bar();
+		bar.fetch();
 		var name = $('#name').val();
 		var email = $('#email').val();
 		var birthday = $('#birthday').val();
 		var weight = $('#weight').val();
 		var genderBac = $('input[name="sex"]:checked').val();
+
+		var beer = {
+			"choice1": bar.where({"id": $('#beer1').val()}),
+			"choice2": bar.where({"id": $('#beer2').val()}),
+			"choice3": bar.where({"id": $('#beer3').val()}),
+		};
+
+		var wine = {
+			"choice1": bar.where({"id": $('#wine1').val()}),
+			"choice2": bar.where({"id": $('#wine2').val()}),
+			"choice3": bar.where({"id": $('#wine3').val()}),
+		};
+
+		var hl = {
+			"choice1": bar.where({"id": $('#hl1').val()}),
+			"choice2": bar.where({"id": $('#hl2').val()}),
+			"choice3": bar.where({"id": $('#hl3').val()}),
+		};
+
 		var personSetup = new Person({
 			"firstTime": false,
 			"name": name,
 			"email": email,
 			"genderBac": genderBac,
 			"birthday": birthday,
-			"weight": weight
+			"weight": weight,
+			"beer1": beer.choice1,
+			"beer2": beer.choice2,
+			"beer3": beer.choice3,
+			"wine1": wine.choice1,
+			"wine2": wine.choice2,
+			"wine3": wine.choice3,
+			"hl1": hl.choice1,
+			"hl2": hl.choice2,
+			"hl3": hl.choice3
 		});
 
 		this.newSave.add(personSetup);
@@ -55,19 +85,19 @@ var Setup =  Backbone.View.extend({
 		console.log(beer);
 
 		for(var i = 0; i < beer.length; i++){
-			$('#beer1').append('<option value="'+beer[i].attributes.alcoholContent+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
-			$('#beer2').append('<option value="'+beer[i].attributes.alcoholContent+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
-			$('#beer3').append('<option value="'+beer[i].attributes.alcoholContent+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
+			$('#beer1').append('<option value="'+beer[i].attributes.id+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
+			$('#beer2').append('<option value="'+beer[i].attributes.id+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
+			$('#beer3').append('<option value="'+beer[i].attributes.id+'"">'+beer[i].attributes.name+' - '+beer[i].attributes.alcoholContent+' -Ounces:'+beer[i].attributes.ounces+' -Time Consumption:'+beer[i].attributes.timeConsumption+'</option>');
 		}
 		for(var i = 0; i < wine.length; i++){
-			$('#wine1').append('<option value="'+wine[i].attributes.alcoholContent+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
-			$('#wine2').append('<option value="'+wine[i].attributes.alcoholContent+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
-			$('#wine3').append('<option value="'+wine[i].attributes.alcoholContent+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
+			$('#wine1').append('<option value="'+wine[i].attributes.id+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
+			$('#wine2').append('<option value="'+wine[i].attributes.id+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
+			$('#wine3').append('<option value="'+wine[i].attributes.id+'"">'+wine[i].attributes.name+' - '+wine[i].attributes.alcoholContent+' -Ounces:'+wine[i].attributes.ounces+' -Time Consumption:'+wine[i].attributes.timeConsumption+'</option>');
 		}
 		for(var i = 0; i < hl.length; i++){
-			$('#hl1').append('<option value="'+hl[i].attributes.alcoholContent+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
-			$('#hl2').append('<option value="'+hl[i].attributes.alcoholContent+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
-			$('#hl3').append('<option value="'+hl[i].attributes.alcoholContent+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
+			$('#hl1').append('<option value="'+hl[i].attributes.id+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
+			$('#hl2').append('<option value="'+hl[i].attributes.id+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
+			$('#hl3').append('<option value="'+hl[i].attributes.id+'"">'+hl[i].attributes.name+' - '+hl[i].attributes.alcoholContent+' -Ounces:'+hl[i].attributes.ounces+' -Time Consumption:'+hl[i].attributes.timeConsumption+'</option>');
 		}
 
 	},
