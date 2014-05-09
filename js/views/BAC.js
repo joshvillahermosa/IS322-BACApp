@@ -10,11 +10,12 @@ var BAC =  Backbone.View.extend({
 	initialize: function(){
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
-		this.calc= ' <div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="beer1" class="btn btn-default" style="display: block;width: 33%">Beer 1</button><button id="beer2" class="btn btn-default" style="display: block;width: 33%">Beer 2</button><button id="beer3" class="btn btn-default" style="display: block;width: 33%">Beer 3</button></div></div><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="wine1" class="btn btn-primary" style="display: block;width: 33%">Wine 1</button><button id="wine2" class="btn btn-primary" style="display: block;width: 33%">Wine 2</button><button id="wine3" class="btn btn-primary" style="display: block;width: 33%">Wine 3</button></div></div><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="hl1" class="btn btn-warning" style="display: block;width: 33%">Liquer 1</button><button id="hl2" class="btn btn-warning" style="display: block;width: 33%">Liquer 2</button><button id="hl3" class="btn btn-warning" style="display: block;width: 33%">Liquer 3</button></div></div><div class="col-sm-12"><div id="BAC" class="well" style="display: block;width: 100%"><span>Your BAC level is: </span><span id="BACLevel"></span></div></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
+		this.calc= ' <div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="beer1" class="btn btn-default" style="display: block;width: 33%">Beer 1</button><button id="beer2" class="btn btn-default" style="display: block;width: 33%">Beer 2</button><button id="beer3" class="btn btn-default" style="display: block;width: 33%">Beer 3</button></div></div><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="wine1" class="btn btn-primary" style="display: block;width: 33%">Wine 1</button><button id="wine2" class="btn btn-primary" style="display: block;width: 33%">Wine 2</button><button id="wine3" class="btn btn-primary" style="display: block;width: 33%">Wine 3</button></div></div><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="hl1" class="btn btn-warning" style="display: block;width: 33%">Liquer 1</button><button id="hl2" class="btn btn-warning" style="display: block;width: 33%">Liquer 2</button><button id="hl3" class="btn btn-warning" style="display: block;width: 33%">Liquer 3</button></div></div><br><div class="col-sm-12"><div id="BAC" class="well" style="display: block;width: 100%"><span>Your BAC level is: </span><span id="BACLevel"></span></div></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
 	},
 
 	render: function(){
 		this.$el.html(this.calc);
+		this.loadUserAlcohol();
 		this.getStartTime();
 	},
 
@@ -27,6 +28,24 @@ var BAC =  Backbone.View.extend({
 		HL avg = 0.4;
 
 	*/
+
+	loadUserAlcohol: function(){
+		people.fetch();
+		var user = people.first();
+
+		$("#beer1").html(user.attributes.beer1[0].name).attr('value', user.attributes.beer1[0].id);
+		$("#beer2").html(user.attributes.beer2[0].name).attr('value', user.attributes.beer2[0].id);
+		$("#beer3").html(user.attributes.beer3[0].name).attr('value', user.attributes.beer3[0].id);
+
+		$("#wine1").html(user.attributes.wine1[0].name).attr('value', user.attributes.wine1[0].id);
+		$("#wine2").html(user.attributes.wine2[0].name).attr('value', user.attributes.wine2[0].id);
+		$("#wine3").html(user.attributes.wine3[0].name).attr('value', user.attributes.wine3[0].id);
+
+		$("#hl1").html(user.attributes.hl1[0].name).attr('value', user.attributes.hl1[0].id);
+		$("#hl2").html(user.attributes.hl2[0].name).attr('value', user.attributes.hl2[0].id);
+		$("#hl3").html(user.attributes.hl3[0].name).attr('value', user.attributes.hl3[0].id);
+
+	},
 
 	calcBACBeer: function(){
 		var bac = this.calcBac(12, 0.054, this.you.weight, this.you.genderBac, 1);
