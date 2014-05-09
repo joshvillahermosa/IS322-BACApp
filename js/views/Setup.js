@@ -59,7 +59,8 @@ var Setup =  Backbone.View.extend({
 				"name": alcohol.beer[i].name,
 				"alcoholContent": alcohol.beer[i].alcoholContent,
 				"ounces": alcohol.beer[i].ounces,
-				"timeConsumption":alcohol.beer[i].timeConsumption
+				"timeConsumption":alcohol.beer[i].timeConsumption,
+				"class": alcohol.beer[i].class
 			});
 			newBar.add(beer);
 			beer.save()	
@@ -73,7 +74,8 @@ var Setup =  Backbone.View.extend({
 				"name": alcohol.wine[i].name,
 				"alcoholContent": alcohol.wine[i].alcoholContent,
 				"ounces": alcohol.wine[i].ounces,
-				"timeConsumption":alcohol.wine[i].timeConsumption
+				"timeConsumption":alcohol.wine[i].timeConsumption,
+				"class": alcohol.wine[i].class
 			});
 			newBar.add(wine);
 			wine.save()	
@@ -87,7 +89,8 @@ var Setup =  Backbone.View.extend({
 				"name": alcohol.hl[i].name,
 				"alcoholContent": alcohol.hl[i].alcoholContent,
 				"ounces": alcohol.hl[i].ounces,
-				"timeConsumption":alcohol.hl[i].timeConsumption
+				"timeConsumption":alcohol.hl[i].timeConsumption,
+				"class": alcohol.hl[i].class
 			});
 			newBar.add(hl);
 			hl.save()	
