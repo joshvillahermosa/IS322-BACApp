@@ -1,3 +1,5 @@
+/*I added my first few commit manually and that somehow screw the rest of the commits, because I definitely added more than 6 commits. I just told I should make it clear*/
+
 .navbar-default
 { 
 background-color:#FF6C47 !important;    /*change color*/
@@ -24,8 +26,15 @@ background-color:#FF6C47 !important;    /*change color*/
 	background-color: #F0F0EE !important;
 }
 .btn-group-vertical.btn-group-lg{ /*trying to find out the right size*/
-	width:185px;
+	width:170px;
+	padding-left:45px;
 }
 .row{
-	width: 250px; /*adjusted snap menu*/
+	width: 240px; /*adjusted snap menu*/
+}
+.containter{
+	width: 250px; /*trying to fix the left menu*/
+}
+.snap-drawer-left{
+	width: 266px; /*fixed issue with scroll bar */
 }
