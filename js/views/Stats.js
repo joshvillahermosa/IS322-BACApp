@@ -49,17 +49,21 @@ var Stats =  Backbone.View.extend({
 		var userBacRecord = this.user.BACLevels.length - 1;
 		var bacRecord = {bacLevel: [], date: []};
 
-		if(userBacRecord <= 5){
+		/*if(userBacRecord <= 5){
 			for(var i = userBacRecord; i >= 0; i--){
 				bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
 				bacRecord.date[i] = this.user.BACLevels[i].date;
 			}
-		}else{ //Gets 5 latest records 
+		}else if(userBacRecord <= 5){ //Gets 5 latest records 
 			for(var i = userBacRecord; i >= (5-userBacRecord); i--){
 				bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
 				bacRecord.date[i] = this.user.BACLevels[i].date;
 			}
 		}
+		else{
+			console.log('Cannot retrieve data');
+			alert('Cannot retrieve data');
+		}*/
 		var bacRecord = {bacLevel: [], date: []};
 		for(var i = userBacRecord; i >= 0; i--){
 			bacRecord.bacLevel[i] = this.user.BACLevels[i].bacLevelHigh;
