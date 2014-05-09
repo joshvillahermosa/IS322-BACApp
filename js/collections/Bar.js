@@ -2,7 +2,7 @@ var Bar = Backbone.Collection.extend({
 	model: Alcohol,
 	localStorage: new Backbone.LocalStorage('Bar'),
 
-	Alcohol: function(){
+	defaultAlcohol: function(){
 		var alcohol = {
 			beer: [],
 			wine: [],
@@ -122,3 +122,5 @@ var Bar = Backbone.Collection.extend({
 		return alcohol;
 	},
 })
+
+var bar = new Bar();
