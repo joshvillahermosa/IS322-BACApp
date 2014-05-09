@@ -8,7 +8,7 @@ var Manual =  Backbone.View.extend({
 	initialize: function(){
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
-		this.form = '<form role="form"><div class="form-group"><label for="acv">Alcohol Content Volume</label><input id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Ounzes</label><input id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time">Time</label><input id="time" type="number" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button></form><div class="well" id="BAC"><span > Your BAC Level is</span><span id="BACLevel"></span></div>';
+		this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume</label><input id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time">Total Time</label><input id="time" type="number" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span > Your BAC Level is</span><span id="BACLevel"></span></div>';
 
 		this.manualBac = new BAC();
 		//this.render();
