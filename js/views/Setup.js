@@ -97,4 +97,5 @@ var Setup =  Backbone.View.extend({
 		}
 		console.log('Finished Loading Hard Liquer');
 	}
+	//bar.where({"name": "Jack Daniels"}) <--- Is your selector
 })
