@@ -3,7 +3,7 @@
 background-color:#FF6C47 !important;    /*change color*/
 }
 .navbar{
-	min-height: 42px;
+	min-height: 42px; /*nav menu overwrite*/
 }
 .snap-drawer-left{
   	background-color: #D3D3CE !important; /* testing div container*/ 
