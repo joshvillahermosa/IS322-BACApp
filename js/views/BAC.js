@@ -6,15 +6,24 @@ var BAC =  Backbone.View.extend({
 	},
 
 	initialize: function(){
+		window.bac = 0;
+		window.lastTime = 0;
+		window.drinking = false;
+		window.lastAcv = 0;
+		window.lastOz = 0;
+		window.lastBac = 0;
+
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
-		this.calc= '<div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="beer1" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 1</button><button id="beer2" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 2</button><button id="beer3" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 3</button></div></div></div><div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="wine1" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 1</button><button id="wine2" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 2</button><button id="wine3" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 3</button></div></div></div><div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="hl1" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 1</button><button id="hl2" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 2</button><button id="hl3" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 3</button></div></div></div><br><div class="row" style="text-align: center"><div class="col-sm-12"><div id="BAC" class="well" style="display: block;width: 100%"><span>Your BAC level is: </span><span id="BACLevel"></span></div></div></div></div><br><a href="#/Manual" class="btn btn-info">Manual Input</a>';
+		this.calc= '<div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="beer1" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 1</button><button id="beer2" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 2</button><button id="beer3" class="btn btn-default alcohol" style="display: block;width: 33%">Beer 3</button></div></div></div><div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="wine1" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 1</button><button id="wine2" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 2</button><button id="wine3" class="btn btn-primary alcohol" style="display: block;width: 33%">Wine 3</button></div></div></div><div class="row" style="text-align: center"><div class="col-sm-12"><div class="btn-group" style="display: block;width: 100%"><button id="hl1" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 1</button><button id="hl2" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 2</button><button id="hl3" class="btn btn-warning alcohol" style="display: block;width: 33%">Liquer 3</button></div></div></div><br><div class="row" style="text-align: center"><div class="col-sm-12"><div id="BAC" class="well" style="display: block;width: 100%"><span>Your BAC level is: </span><span id="BACLevel"></span></div></div></div></div><br><a href="#/Manual" class="btn btn-info">Enter BAC Diary</a>';
 	},
 
 	render: function(){
 		this.$el.html(this.calc);
 		this.loadUserAlcohol();
 		this.getStartTime();
+
+		window.test = 5;
 	},
 
 	//Use to recalculate funciton when view is loaded
@@ -61,6 +70,7 @@ var BAC =  Backbone.View.extend({
 	},
 
 	getDrink: function(){
+		window.drinking = true;
 		var drinkId = $(event.target).val();
 		console.log(drinkId);
 		bar.fetch();
@@ -72,8 +82,16 @@ var BAC =  Backbone.View.extend({
 
 		//Drink up!
 
+		window.lastAcv = drink[0].attributes.alcoholContent;
+		window.lastOz = drink[0].attributes.ounces; 
+		window.lastTime = window.lastTime + drink[0].attributes.timeConsumption;
+
 		console.log(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, user.attributes.weight, user.attributes.genderBac, drink[0].attributes.timeConsumption);
 		this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, user.attributes.weight, user.attributes.genderBac, drink[0].attributes.timeConsumption);
+
+		while(window.drinking == true){
+			setInterval( this.updateBac(),1000);
+		}
 		//this.calcBac(0.057, 12, 185, 0.74, 0.15);
 	},
 
@@ -101,6 +119,18 @@ var BAC =  Backbone.View.extend({
 		$('#BACLevel').empty();
 		$('#BACLevel').append(bac);
 		return bac;
+	},
+
+	updateBac: function(){ //Not tested
+		console.log('Updating Bac...');
+		people.fetch();
+		var user = people.first();
+		window.lastTime = window.lastTime -  0.017; //subtracts every when excuted
+		if (window.lastBac <= 0){
+			window.drinking = false;
+		}else{
+			window.lastBac += this.calcBac(window.lastAcv, window,lastOz, user.attributes.weight, user.attributes.genderBac, window.lastTime);
+		}
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
