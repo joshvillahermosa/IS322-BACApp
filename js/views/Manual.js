@@ -1,4 +1,4 @@
-var Manual =  Backbone.View.extend({
+var Manual =  BAC.extend({
 	el: '#load',
 
 	events:{
@@ -10,7 +10,7 @@ var Manual =  Backbone.View.extend({
 		this.you = this.user.retrieveProfile();
 		this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume</label><input id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time">Total Time</label><input id="time" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span > Your BAC Level is</span><span id="BACLevel"></span></div>';
 
-		this.manualBac = new BAC();
+		//this.manualBac = new BAC();
 		//this.render();
 	},
 
@@ -18,15 +18,15 @@ var Manual =  Backbone.View.extend({
 		this.$el.html(this.form);
 	},
 
-	calcBac: function(){
+	/*calcBac: function(){
 		var acv = $('#acv').val();
 		var oz = $('#oz').val();
 		var time = $('#time').val();
-		var bac = this.manualBac.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
+		var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
 		$('#BACLevel').empty();
 		$('#BACLevel').append('<p>'+bac+'</p>');
 		return bac;
-	},
+	},*/
 
 	getTime: function(){
 		var date = new Date();
@@ -60,7 +60,11 @@ var Manual =  Backbone.View.extend({
 
 	addBACLevel: function(){
 		console.log(this.you);
-		var bac = this.calcBac();
+		//var bac = this.calcBac();
+		var acv = $('#acv').val();
+		var oz = $('#oz').val();
+		var time = $('#time').val();
+		var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
 		var time = this.getTime();
 		var date = this.getDate();
 		//var location = area.getLocation();
