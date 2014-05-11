@@ -3,7 +3,7 @@
 background-color:#FF6C47 !important;    /*change color*/
 }
 .navbar{
-	min-height: 42px; /*nav menu overwrite*/
+	min-height: 40px; /*nav menu overwrite*/
 }
 .snap-drawer-left{
   	background-color: #D3D3CE !important; /* testing div container*/ 
@@ -30,9 +30,9 @@ background-color:#FF6C47 !important;    /*change color*/
 	width:170px;
 	padding-left:45px;
 }
-/*.row{
-	width: 240px; /*adjusted snap menu
-}*/
+.row{
+	width: 240px; /*adjusted snap menu*/
+}
 .containter{
 	width: 250px; /*trying to fix the left menu*/
 }
@@ -41,4 +41,8 @@ background-color:#FF6C47 !important;    /*change color*/
 }
 a{
 	color: #000000; /*changed font color font to match everything else*/ 
+}
+.navbar-header{
+	width: 38px;
+	height: 0px;
 }
