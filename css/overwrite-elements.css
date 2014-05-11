@@ -30,9 +30,9 @@ background-color:#FF6C47 !important;    /*change color*/
 	width:170px;
 	padding-left:45px;
 }
-.row{
-	width: 240px; /*adjusted snap menu*/
-}
+/*.row{
+	width: 240px; /*adjusted snap menu
+}*/
 .containter{
 	width: 250px; /*trying to fix the left menu*/
 }
