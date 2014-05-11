@@ -6,6 +6,10 @@ var BAC =  Backbone.View.extend({
 	},
 
 	initialize: function(){
+
+		this.user = new You();
+		this.you = this.user.retrieveProfile();
+
 		//Setting Global Variables
 		window.bac = 0;
 		window.lastTime = 0;
@@ -16,6 +20,7 @@ var BAC =  Backbone.View.extend({
 		window.i = 0;
 		window.firstDrink = false;
 		window.highBac = 0;
+		window.startTime = 0;
 
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
@@ -92,14 +97,6 @@ var BAC =  Backbone.View.extend({
 		window.lastTime = window.lastTime + drink[0].attributes.timeConsumption;
 
 		console.log(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption)
-
-		/*if(window.lastBac <= 0){
-			console.log('Created lastBac');
-			window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
-		}else{
-			console.log('updated lastBac');
-			window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, window.lastTime);
-		}*/
 		
 		window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
 
@@ -108,14 +105,15 @@ var BAC =  Backbone.View.extend({
 
 		if(window.firstDrink == false){
 			window.firstDrink = true;
+			window.startTime = this.getTime();
 			var timer = setInterval( function(){			
 			this.updateBac();
 				//this.test();
 			if(window.drinking == false){
 					clearInterval(timer);
-					this.test()
+					this.saveBac()
 				}
-			}.bind(this), 3000); //.bind(this) to use this object, set to 3secs
+			}.bind(this), 1000); //.bind(this) to use this object, set to 1secs
 		}else{
 			console.log('Already having more than one drink');
 		}
@@ -152,8 +150,59 @@ var BAC =  Backbone.View.extend({
 		return bac;
 	},
 
-	test:function(){
-		console.log('Test');
+	saveBac:function(){
+
+		var date = this.getDate();
+		var bac = window.highBac;
+		var timeStart = window.startTime;
+		var timeEnd = this.getTime();
+
+
+		var newBac = new PersonBAC({
+			"date": date,
+			"bacLevelHigh": bac,
+			"bacLevelCur": 0,
+			"lat": 0,
+			"lng": 0,
+			"timeStart": timeStart,
+			"timeFinish": timeEnd,
+		});
+
+		this.you.BACLevels.push(newBac);
+		people.localStorage.update(this.you);
+
+		console.log(newBac);
+		this.resetGlobal();
+	},
+
+	getDate: function(){
+		var date2 = new Date();
+		var date = {
+			year: 0,
+			month: 0,
+			day:0
+		};
+
+		date.year = date2.getFullYear();
+		date.month = date2.getMonth()+1;
+		date.day = date2.getDate();
+
+		var today = date.year+'-'+date.month+'-'+date.day;
+
+		return today;
+	},
+
+	getTime: function(){
+		var date = new Date();
+		var time = {
+			hour: 0,
+			min: 0
+		};
+		time.hour = date.getHours();
+		time.min = date.getMinutes();
+
+		var curTime = time.hour+':'+time.min;
+		return curTime;
 	},
 
 	updateBac: function(){ //Not tested
@@ -171,6 +220,20 @@ var BAC =  Backbone.View.extend({
 				console.log(window.lastTime);*/
 			}
 		console.log('Highest BAC: '+window.highBac);
+	},
+
+	resetGlobal: function(){
+		window.bac = 0;
+		window.lastTime = 0;
+		window.drinking = false;
+		window.lastAcv = 0;
+		window.lastOz = 0;
+		window.lastBac = 0;
+		window.i = 0;
+		window.firstDrink = false;
+		window.highBac = 0;
+		window.startTime = 0;
+		console.log('Global Var reset');
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
