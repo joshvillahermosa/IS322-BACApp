@@ -67,14 +67,14 @@ var Manual =  BAC.extend({
 		var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
 		var time = this.getTime();
 		var date = this.getDate();
-		//var location = area.getLocation();
+		area.getCurrentLocation();
 
 		var newBac = new PersonBAC({
 			"date": date,
 			"bacLevelHigh": bac,
 			"bacLevelCur": 0,
-			"lat": 0,
-			"lng": 0,
+			"lat": window.lat,
+			"lng": window.lng,
 			"timeStart": time,
 			"timeFinish": time,
 			"manualEnter": true
