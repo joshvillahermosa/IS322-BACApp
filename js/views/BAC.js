@@ -6,12 +6,16 @@ var BAC =  Backbone.View.extend({
 	},
 
 	initialize: function(){
+		//Setting Global Variables
 		window.bac = 0;
 		window.lastTime = 0;
 		window.drinking = false;
 		window.lastAcv = 0;
 		window.lastOz = 0;
 		window.lastBac = 0;
+		window.i = 0;
+		window.firstDrink = false;
+		window.highBac = 0;
 
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
@@ -83,25 +87,38 @@ var BAC =  Backbone.View.extend({
 
 		//Drink up!
 
-		window.lastAcv = drink[0].attributes.alcoholContent;
-		window.lastOz = drink[0].attributes.ounces; 
+		window.lastAcv += drink[0].attributes.alcoholContent;
+		window.lastOz += drink[0].attributes.ounces; 
 		window.lastTime = window.lastTime + drink[0].attributes.timeConsumption;
 
 		console.log(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption)
-		window.lastBac = this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
 
-		//setInterval( this.updateBac(i), 60000);
-		//var i = 0;
-		var timer = setInterval( function(){
-			window.i = 0;
+		/*if(window.lastBac <= 0){
+			console.log('Created lastBac');
+			window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
+		}else{
+			console.log('updated lastBac');
+			window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, window.lastTime);
+		}*/
+		
+		window.lastBac += this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
+
+		//Captures highest Bac
+		
+
+		if(window.firstDrink == false){
+			window.firstDrink = true;
+			var timer = setInterval( function(){			
 			this.updateBac();
 				//this.test();
 			if(window.drinking == false){
-				clearInterval(timer);
-				this.test()
-			}
-		}.bind(this), 3000); //.bind(this) to use 
-		//this.calcBac(0.057, 12, 185, 0.74, 0.15);
+					clearInterval(timer);
+					this.test()
+				}
+			}.bind(this), 3000); //.bind(this) to use this object, set to 3secs
+		}else{
+			console.log('Already having more than one drink');
+		}
 	},
 
 	calcBac: function(acv, oz, weight, gender, hour){
@@ -123,10 +140,15 @@ var BAC =  Backbone.View.extend({
 		var bac = (((acv * oz) * 5.14)/(weight * gender )) -( 0.015 * hour);
 		bac = Math.round(bac * 1000) / 1000;
 		
-		console.log(bac);
+		console.log('Computed BAC: '+bac);
 
 		$('#BACLevel').empty();
 		$('#BACLevel').append(bac);
+
+		if(window.lastBac >= window.highBac)
+		{
+			window.highBac = window.lastBac;
+		}
 		return bac;
 	},
 
@@ -135,20 +157,20 @@ var BAC =  Backbone.View.extend({
 	},
 
 	updateBac: function(){ //Not tested
-		window.i++;
-		console.log('Updating Bac...'+window.i);
-		
-		window.lastTime = window.lastTime +  0.017; //adds every time when excuted
-		if (window.lastBac <= 0){
-			window.drinking = false;
-		}else{
-			window.lastBac = this.calcBac(window.lastAcv, window.lastOz, window.user.attributes.weight, window.user.attributes.genderBac, window.lastTime);
-			/*console.log(window.lastBac);
-			console.log(window.lastAcv);
-			console.log(window.lastTime);
-			console.log(window.lastTime);*/
-		}
-		console.log(window.lastBac);
+			window.i++;
+			console.log('Updating Bac round: '+window.i);
+			
+			window.lastTime = window.lastTime +  0.017; //adds every time when excuted
+			if (window.lastBac <= 0){
+				window.drinking = false;
+			}else{
+				window.lastBac = this.calcBac(window.lastAcv, window.lastOz, window.user.attributes.weight, window.user.attributes.genderBac, window.lastTime);
+				/*console.log(window.lastBac);
+				console.log(window.lastAcv);
+				console.log(window.lastTime);
+				console.log(window.lastTime);*/
+			}
+		console.log('Highest BAC: '+window.highBac);
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
