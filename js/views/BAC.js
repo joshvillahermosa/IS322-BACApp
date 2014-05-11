@@ -70,15 +70,16 @@ var BAC =  Backbone.View.extend({
 	},
 
 	getDrink: function(){
-		window.drinking = true;
+		if(window.drinking == false){
+			people.fetch();
+			window.user = people.first();
+			window.drinking = true;
+		}
 		var drinkId = $(event.target).val();
 		console.log(drinkId);
 		bar.fetch();
 		var drink = bar.where({"id": drinkId});
 		console.log(drink);
-
-		people.fetch();
-		var user = people.first();
 
 		//Drink up!
 
@@ -86,13 +87,21 @@ var BAC =  Backbone.View.extend({
 		window.lastOz = drink[0].attributes.ounces; 
 		window.lastTime = window.lastTime + drink[0].attributes.timeConsumption;
 
-		console.log(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, user.attributes.weight, user.attributes.genderBac, drink[0].attributes.timeConsumption);
-		this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, user.attributes.weight, user.attributes.genderBac, drink[0].attributes.timeConsumption);
+		console.log(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption)
+		window.lastBac = this.calcBac(drink[0].attributes.alcoholContent, drink[0].attributes.ounces, window.user.attributes.weight, window.user.attributes.genderBac, drink[0].attributes.timeConsumption);
 
-		while(window.drinking == true){
-			setInterval( this.updateBac(),1000);
-		}
+		//setInterval( this.updateBac(i), 60000);
+		//var i = 0;
+		var timer = setInterval( function(){
+			this.updateBac();
+				//this.test();
+			if(window.drinking == false){
+				clearInterval(timer);
+			}
+		}.bind(this), 3000); //.bind(this) to use 
 		//this.calcBac(0.057, 12, 185, 0.74, 0.15);
+
+		
 	},
 
 	calcBac: function(acv, oz, weight, gender, hour){
@@ -121,16 +130,26 @@ var BAC =  Backbone.View.extend({
 		return bac;
 	},
 
+	test:function(){
+		console.log('Test');
+	},
+
 	updateBac: function(){ //Not tested
-		console.log('Updating Bac...');
-		people.fetch();
-		var user = people.first();
-		window.lastTime = window.lastTime -  0.017; //subtracts every when excuted
+		window.i = 0;
+		window.i++;
+		console.log('Updating Bac...'+window.i);
+		
+		window.lastTime = window.lastTime +  0.017; //adds every time when excuted
 		if (window.lastBac <= 0){
 			window.drinking = false;
 		}else{
-			window.lastBac += this.calcBac(window.lastAcv, window,lastOz, user.attributes.weight, user.attributes.genderBac, window.lastTime);
+			window.lastBac = this.calcBac(window.lastAcv, window.lastOz, window.user.attributes.weight, window.user.attributes.genderBac, window.lastTime);
+			/*console.log(window.lastBac);
+			console.log(window.lastAcv);
+			console.log(window.lastTime);
+			console.log(window.lastTime);*/
 		}
+		console.log(window.lastBac);
 	}
 	/*var weight = 160;
 	var gender_male = 0.73;
@@ -158,3 +177,5 @@ console.log(Math.round(test * 100)/100)
 hardLiqour_bac(6); //ounces */
 
 });
+
+//var bar = new BAC();
