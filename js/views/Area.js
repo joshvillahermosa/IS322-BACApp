@@ -9,9 +9,11 @@ var Area = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.area);
-		var curLocation = this.getLocation();
-		console.log(curLocation.lat+' '+curLocation.lng+' - Confirmed');
-		this.createMap(this.lat, this.lng);
+		this.getLocation();
+		//console.log(curLocation.lat+' '+curLocation.lng+' - Confirmed');
+		//this.createMap(this.lat, this.lng);
+
+
 		//google.maps.event.addDomListener(window, 'load', this.createMap);
 		
 	},
@@ -21,8 +23,8 @@ var Area = Backbone.View.extend({
 		//var mlong = lng;
 		//alert(lat+' '+lng);
 		var mapOptions = {
-			//center: new google.maps.LatLng(40.7430473, -74.1777488),
-			center: new google.maps.LatLng(lat, lng),
+			center: new google.maps.LatLng(40.7430473, -74.1777488),
+			//center: new google.maps.LatLng(lat, lng),
 			zoom: 15
 		}
 		var map = new google.maps.Map(document.getElementById(this.canvasId), mapOptions);
@@ -53,6 +55,12 @@ var Area = Backbone.View.extend({
 		location.lng = position.coords.longitude;
 		console.log('Lng recieved');
 		console.log(location.lat+' '+location.lng);
+		var mapOptions = {
+			center: new google.maps.LatLng(40.7430473, -74.1777488),
+			//center: new google.maps.LatLng(lat, lng),
+			zoom: 15
+		}
+		var map = new google.maps.Map(document.getElementById(this.canvasId), mapOptions);
 		return location;
 	},
 
