@@ -19,26 +19,7 @@ var You =  Backbone.View.extend({
 		this.populateUserForm(this.user);
 		this.populateList();
 	},
-
-	/*goNext: function(){
-		$('#next').click(function(){
-		    $('#form1').attr('class', 'invisible');
-		    $('#form2').attr('class', 'visible');
-		});
-	},
-
-	goPrev: function(){
-		$('#prev').click(function(){
-		    $('#form1').attr('class', 'visible');
-		    $('#form2').attr('class', 'invisible');
-		});
-	},*/
-
-	/*updateYou: function(){
-		var a = $('#name').val();
-		console.log("Function Triggered: "+a);
-	}*/
-
+	
 	populateList: function(){
 		var bar = new Bar();
 		bar.fetch();
