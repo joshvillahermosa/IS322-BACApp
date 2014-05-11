@@ -93,15 +93,15 @@ var BAC =  Backbone.View.extend({
 		//setInterval( this.updateBac(i), 60000);
 		//var i = 0;
 		var timer = setInterval( function(){
+			window.i = 0;
 			this.updateBac();
 				//this.test();
 			if(window.drinking == false){
 				clearInterval(timer);
+				this.test()
 			}
 		}.bind(this), 3000); //.bind(this) to use 
 		//this.calcBac(0.057, 12, 185, 0.74, 0.15);
-
-		
 	},
 
 	calcBac: function(acv, oz, weight, gender, hour){
@@ -135,7 +135,6 @@ var BAC =  Backbone.View.extend({
 	},
 
 	updateBac: function(){ //Not tested
-		window.i = 0;
 		window.i++;
 		console.log('Updating Bac...'+window.i);
 		
@@ -178,4 +177,4 @@ hardLiqour_bac(6); //ounces */
 
 });
 
-//var bar = new BAC();
+//var bac = new BAC();
