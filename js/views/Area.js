@@ -13,6 +13,9 @@ var Area = Backbone.View.extend({
 	render: function(){
 		this.$el.html(this.area);
 		this.createMap();
+		this.getCurrentLocation();
+		console.log('Check location: '+window.lat+' : '+window.lng);
+		//Does not store local
 		
 	},
 
@@ -21,12 +24,28 @@ var Area = Backbone.View.extend({
 		//var mlong = lng;
 		//alert(lat+' '+lng);
 		var mapOptions = {
-			center: new google.maps.LatLng(40.7430473, -74.1777488),
-			//center: new google.maps.LatLng(lat, lng),
+			//center: new google.maps.LatLng(40.7430473, -74.1777488),
+			center: new google.maps.LatLng(lat, lng),
 			zoom: 15
 		}
 		var map = new google.maps.Map(document.getElementById(this.canvasId), mapOptions);
 	},
+
+	getCurrentLocation: function(){
+		if (navigator.geolocation){
+		    navigator.geolocation.getCurrentPosition(function(position){
+		    	console.log('Getting current location....');
+		    	window.lat = position.coords.latitude;
+		    	window.lng = position.coords.longitude;
+
+		    	console.log('...Location found: '+window.lat+' : '+window.lng);
+
+		    	this.createMap(window.lat, window.lng);
+		    }.bind(this));
+		}else{
+			alert('Please turn on GPS');
+		}
+	}
 
 
 })
