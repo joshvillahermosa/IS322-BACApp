@@ -105,6 +105,10 @@ var BAC =  Backbone.View.extend({
 		
 
 		if(window.firstDrink == false){
+			$('#notification').append('<span class="text-success"><i>Drink up!</i></span>');
+			setTimeout(function(){
+				$('#notification').empty();
+			},3000);
 			window.firstDrink = true;
 			window.startTime = this.getTime();
 			var timer = setInterval( function(){			
@@ -117,6 +121,11 @@ var BAC =  Backbone.View.extend({
 			}.bind(this), 1000); //.bind(this) to use this object, set to 1secs
 		}else{
 			console.log('Already having more than one drink');
+			$('#notification').empty();
+			$('#notification').append('<span class="text-success"><i><b>Drink up again!</b></i></span>');
+			setTimeout(function(){
+				$('#notification').empty();
+			},3000);
 		}
 	},
 
@@ -148,10 +157,23 @@ var BAC =  Backbone.View.extend({
 		{
 			window.highBac = window.lastBac;
 		}
+
+		if (window.lastBac >= 0.08){
+			$('#notification').empty();
+			$('#notification').append('<span class="text-danger"><i><b>Stay away from driving!</b></i></span>');
+		}else{
+			$('#notification').empty();
+		}
 		return bac;
 	},
 
 	saveBac:function(){
+
+		$('#notification').empty();
+		$('#notification').append('<span class="text-success"><i><b>Completely Sober! Saving you stats now!</b></i></span>');
+		setTimeout(function(){
+			$('#notification').empty();
+		},3000);
 
 		var date = this.getDate();
 		var bac = window.highBac;
