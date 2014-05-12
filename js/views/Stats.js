@@ -16,24 +16,30 @@ var Stats =  Backbone.View.extend({
 	chartGenerate: function(){
 		var bacData = this.stringDateAndBac();
 
-		var data = {
-			labels: bacData.date,
-			datasets : [
-				{
-					fillColor : "rgba(220,220,220,0.5)",
-					strokeColor : "rgba(220,220,220,1)",
-					data : bacData.bacLevel
-					//data: [0.0245,0.0645,0.0545]					
-				}
-			]
+		if(bacData.bacLevel.length <= 2){
+			$('#notification').append('<h5 class="info">Not enough data</h5>');
+		}else{
+			$('#notification').empty();
+			var data = {
+				labels: bacData.date,
+				datasets : [
+					{
+						fillColor : "rgba(220,220,220,0.5)",
+						strokeColor : "rgba(220,220,220,1)",
+						data : bacData.bacLevel
+						//data: [0.0245,0.0645,0.0545]					
+					}
+				]
+			}
+
+			var options = {
+					scaleFontSize : 9
+			}
+
+			var ctx = $("#chart").get(0).getContext("2d");
+			new Chart(ctx).Bar(data, options);			
 		}
 
-		var options = {
-				scaleFontSize : 9
-		}
-
-		var ctx = $("#chart").get(0).getContext("2d");
-		new Chart(ctx).Bar(data, options);
 	},
 
 	populateTable: function(){
