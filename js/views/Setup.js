@@ -17,6 +17,7 @@ var Setup =  Backbone.View.extend({
 
 	render: function(){
 		$('#navis').attr('class', 'invisible');
+		$('#notification').attr('class', 'invisible');
 		this.$el.html(this.intro);
 		
 	},
