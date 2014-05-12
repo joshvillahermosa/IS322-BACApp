@@ -156,14 +156,15 @@ var BAC =  Backbone.View.extend({
 		var bac = window.highBac;
 		var timeStart = window.startTime;
 		var timeEnd = this.getTime();
+		area.getCurrentLocation();
 
 
 		var newBac = new PersonBAC({
 			"date": date,
 			"bacLevelHigh": bac,
 			"bacLevelCur": 0,
-			"lat": 0,
-			"lng": 0,
+			"lat": window.lat,
+			"lng": window.lng,
 			"timeStart": timeStart,
 			"timeFinish": timeEnd,
 		});
