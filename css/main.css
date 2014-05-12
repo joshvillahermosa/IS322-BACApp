@@ -92,10 +92,11 @@ textarea {
    ========================================================================== */
 
 .jumbotron{
-    background-image: url('../img/garden.jpg');
+    /*background-image: url('../img/garden.jpg');*/
     /*background: center center fixed;
     background-size: cover;*/ 
-    color: white;   
+    color: black;
+    background-color: white;
 }
 
 
