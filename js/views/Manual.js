@@ -8,7 +8,7 @@ var Manual =  BAC.extend({
 	initialize: function(){
 		this.user = new You();
 		this.you = this.user.retrieveProfile();
-		this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume</label><input type="number" step="any" id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input type="number" step="any" id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time" type="number" step="any">Total Time</label><input id="time" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span > Your BAC Level is: </span><span id="BACLevel"></span></div>';
+		this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume in Percent(%)</label><input type="number" step="any" id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input type="number" step="any" id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time" type="number" step="any">Total Time</label><input type="number" step="any" id="time" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span > Your BAC Level is: </span><span id="BACLevel"></span></div>';
 
 		//this.manualBac = new BAC();
 		//this.render();
@@ -67,6 +67,7 @@ var Manual =  BAC.extend({
 		console.log(this.you);
 		//var bac = this.calcBac();
 		var acv = $('#acv').val();
+		acv = this.percentToDecimal(acv);
 		var oz = $('#oz').val();
 		var time = $('#time').val();
 		var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
@@ -89,5 +90,10 @@ var Manual =  BAC.extend({
 		people.localStorage.update(this.you);
 
 		console.log(newBac);
-	}
+	},
+
+	percentToDecimal: function(num){
+		num = num/100;
+		return num;
+	} 
 })
