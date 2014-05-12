@@ -118,7 +118,7 @@ var BAC =  Backbone.View.extend({
 					clearInterval(timer);
 					this.saveBac()
 				}
-			}.bind(this), 1000); //.bind(this) to use this object, set to 1secs
+			}.bind(this), 60000); //.bind(this) to use this object, set to 1secs
 		}else{
 			console.log('Already having more than one drink');
 			$('#notification').empty();
