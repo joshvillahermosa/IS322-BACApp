@@ -17,6 +17,7 @@ var Area = Backbone.View.extend({
 	},
 
 	render: function(){
+		$('#notification').empty();
 		this.user = you.retrieveProfile();
 		this.$el.html(this.area+this.table);
 		this.createMap();

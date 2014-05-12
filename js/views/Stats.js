@@ -7,6 +7,7 @@ var Stats =  Backbone.View.extend({
 	},
 
 	render: function(){
+		$('#notification').empty();
 		this.user = you.retrieveProfile();
 		this.$el.html(this.stats+''+this.table);
 		this.chartGenerate();
@@ -17,7 +18,7 @@ var Stats =  Backbone.View.extend({
 		var bacData = this.stringDateAndBac();
 
 		if(bacData.bacLevel.length <= 2){
-			$('#notification').append('<h5 class="info">Not enough data</h5>');
+			$('#notification').append('<h5 class="info">Not enough data to create chart</h5>');
 		}else{
 			$('#notification').empty();
 			var data = {
@@ -46,8 +47,12 @@ var Stats =  Backbone.View.extend({
 		$('#records').empty(); 
 		var userBacRecord = this.user.BACLevels.length - 1;
 
-		for(var i = userBacRecord; i >= 0; i--){
-			$('#records').append('<tr><td>'+this.user.BACLevels[i].bacLevelHigh+'</td><td>'+this.user.BACLevels[i].date+'</td></tr>');
+		if(this.user.BACLevels.length == 0){
+			$('#records').append('<tr><td colspan="2">No data</td></tr>');
+		}else{
+			for(var i = userBacRecord; i >= 0; i--){
+				$('#records').append('<tr><td>'+this.user.BACLevels[i].bacLevelHigh+'</td><td>'+this.user.BACLevels[i].date+'</td></tr>');
+			}
 		}
 	},
 

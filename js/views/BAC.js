@@ -28,6 +28,7 @@ var BAC =  Backbone.View.extend({
 	},
 
 	render: function(){
+		$('#notification').empty();
 		this.$el.html(this.calc);
 		this.loadUserAlcohol();
 		this.getStartTime();

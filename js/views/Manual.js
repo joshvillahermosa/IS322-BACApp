@@ -15,6 +15,7 @@ var Manual =  BAC.extend({
 	},
 
 	render: function(){
+		$('#notification').empty();
 		this.$el.html(this.form);
 	},
 
