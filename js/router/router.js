@@ -5,7 +5,8 @@ var AppRouter =  Backbone.Router.extend({
 		"Person": "loadUserStats",
 		"Stats": "loadStats",
 		"Area": "loadArea",
-		"Manual": "loadManual"
+		"Manual": "loadManual",
+		"App": "loadInfo"
 	},
 
 	events:{
@@ -22,6 +23,7 @@ var AppRouter =  Backbone.Router.extend({
 		this.nav = new Nav();
 		this.people = new People();
 		this.setup = new Setup();
+		this.app = new App();
 	},
 
 	checkFirstTimeUse: function(){
@@ -64,6 +66,9 @@ var AppRouter =  Backbone.Router.extend({
 
 	loadManual: function(){
 		this.manual.render();
+	},
+	loadInfo: function(){
+		this.app.render();
 	}
 });
 
