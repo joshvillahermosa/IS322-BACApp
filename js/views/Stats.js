@@ -18,7 +18,7 @@ var Stats =  Backbone.View.extend({
 		var bacData = this.stringDateAndBac();
 
 		if(bacData.bacLevel.length <= 2){
-			$('#notification').append('<h5 class="text-info">Not enough data to create chart</h5>');
+			$('#notification').append('<h5 class="text-primary">Not enough data to create chart</h5>');
 		}else{
 			$('#notification').empty();
 			var data = {
