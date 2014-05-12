@@ -1,9 +1,211 @@
-<div class="jumbotron">
-    <h1><i>Pleasure begins with control</i></h1>
-    <h2>Blood Alcohol Content Diary (Temp Name: NJIT Wasted Meter) v0.8</h2>
-</div>
-<p>This will help calculate a rough estimate of your blood alcohol content while drinking. This app will give you real time updating BAC as each minute passes by. It will track you highest Blood Alcohol Content, time, and location when you are at a bar or enjoying a party. This app is in early beta and will not be completed for a while<b>PLEASE NOTE THIS IS NOT A SUBSTITUTE FOR A BREATHALYZER!</b> This does not calculate the most accurate BAC of your body, there are missing variables (such as food digested, personal metabolism rate, urination, etc) that prevents you giving the most accurate BAC. What we do is give you a estimate.</p>
+var Manual =  BAC.extend({
+    el: '#load',
 
-<p><b>By clicking next, you agree that this app is not a substitute for a breathalyzer. You understand does not give you the most accurate BAC level and you understand that you must use your own judgment when performing actions while under the influence.</b></p>
+    events:{
+        'click #manualBac': 'addBACLevel'
+    },
 
-<button id="#agreement" class="btn btn-success">Yes, I agree. LETS DRINK!</button>
+    initialize: function(){
+        this.user = new You();
+        this.you = this.user.retrieveProfile();
+        this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume in Percent(%)</label><input type="number" step="any" id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input type="number" step="any" id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time" type="number" step="any">Total Time from Initial Drink</label><br>Hour: <input type="number" step="any" id="hour" min="0" max="24" class="" required> Minute: <input type="number" step="any" id="min" min="0" max="60" class="" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span> Your BAC Level is: </span><span id="BACLevel"></span></div>';
+
+        //this.manualBac = new BAC();
+        //this.render();
+    },
+
+    render: function(){
+        $('#notification').empty();
+        this.$el.html(this.form);
+    },
+
+    /*calcBac: function(){
+        var acv = $('#acv').val();
+        var oz = $('#oz').val();
+        var time = $('#time').val();
+        var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
+        $('#BACLevel').empty();
+        $('#BACLevel').append('<p>'+bac+'</p>');
+        return bac;
+    },*/
+
+    getTime: function(){
+        var date = new Date();
+        var time = {
+            hour: 0,
+            min: 0
+        };
+        time.hour = date.getHours();
+        time.min = date.getMinutes();
+
+        var curTime = time.hour+':'+time.min;
+        return curTime;
+    },
+
+    getDate: function(){
+        var date2 = new Date();
+        var date = {
+            year: 0,
+            month: 0,
+            day:0
+        };
+
+        date.year = date2.getFullYear();
+        date.month = date2.getMonth()+1;
+        date.day = date2.getDate();
+
+        var today = date.year+'-'+date.month+'-'+date.day;
+
+        return today;
+    },
+
+    addBACLevel: function(){
+        $('#notification').append('<span class="text-success"><i><b>Added to your stats</b></i></span>');
+        setTimeout(function(){
+            $('#notification').empty();
+        },3000);
+        console.log(this.you);
+        //var bac = this.calcBac();
+        var acv = $('#acv').val();
+        acv = this.percentToDecimal(acv);
+        var oz = $('#oz').val();
+        var hour = $('#hour').val();
+        var min = $('#min').val();
+        min = this.decimalMin(min);
+        var time = hour + min;
+        var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
+        var time = this.getTime();
+        var date = this.getDate();
+        area.getCurrentLocation();
+
+        var newBac = new PersonBAC({
+            "date": date,
+            "bacLevelHigh": bac,
+            "bacLevelCur": 0,
+            "lat": window.lat,
+            "lng": window.lng,
+            "timeStart": time,
+            "timeFinish": time,
+            "manualEnter": true
+        });
+
+        this.you.BACLevels.push(newBac);
+        people.localStorage.update(this.you);
+
+        console.log(newBac);
+    },
+
+    percentToDecimal: function(num){
+        num = num/100;
+        return num;
+    },
+
+    decimalMin: function(min){
+        min = min/60;
+        return min;
+    } 
+})
+
+
+__________
+Old code
+
+var Manual =  BAC.extend({
+    el: '#load',
+
+    events:{
+        'click #manualBac': 'addBACLevel'
+    },
+
+    initialize: function(){
+        this.user = new You();
+        this.you = this.user.retrieveProfile();
+        this.form = '<div class="form-group"><label for="acv">Total Alcohol Content Volume in Percent(%)</label><input type="number" step="any" id="acv" name="acv" class="form-control" placeholder="0" required></div><div class="form-group"><label for="oz">Total Ounzes</label><input type="number" step="any" id="oz" name="oz" class="form-control" placeholder="0" required></div><div class="from-group"><label for="time" type="number" step="any">Total Time</label><input type="number" step="any" id="time" min="0" max="24" class="form-control" required></div><br><button id="manualBac" class="btn btn-success">Calculate</button><div class="well" id="BAC"><span > Your BAC Level is: </span><span id="BACLevel"></span></div>';
+
+        //this.manualBac = new BAC();
+        //this.render();
+    },
+
+    render: function(){
+        $('#notification').empty();
+        this.$el.html(this.form);
+    },
+
+    /*calcBac: function(){
+        var acv = $('#acv').val();
+        var oz = $('#oz').val();
+        var time = $('#time').val();
+        var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
+        $('#BACLevel').empty();
+        $('#BACLevel').append('<p>'+bac+'</p>');
+        return bac;
+    },*/
+
+    getTime: function(){
+        var date = new Date();
+        var time = {
+            hour: 0,
+            min: 0
+        };
+        time.hour = date.getHours();
+        time.min = date.getMinutes();
+
+        var curTime = time.hour+':'+time.min;
+        return curTime;
+    },
+
+    getDate: function(){
+        var date2 = new Date();
+        var date = {
+            year: 0,
+            month: 0,
+            day:0
+        };
+
+        date.year = date2.getFullYear();
+        date.month = date2.getMonth()+1;
+        date.day = date2.getDate();
+
+        var today = date.year+'-'+date.month+'-'+date.day;
+
+        return today;
+    },
+
+    addBACLevel: function(){
+        $('#notification').append('<span class="text-success"><i><b>Added to your stats</b></i></span>');
+        setTimeout(function(){
+            $('#notification').empty();
+        },3000);
+        console.log(this.you);
+        //var bac = this.calcBac();
+        var acv = $('#acv').val();
+        acv = this.percentToDecimal(acv);
+        var oz = $('#oz').val();
+        var time = $('#time').val();
+        var bac = this.calcBac(acv, oz, this.you.weight, this.you.genderBac, time);
+        var time = this.getTime();
+        var date = this.getDate();
+        area.getCurrentLocation();
+
+        var newBac = new PersonBAC({
+            "date": date,
+            "bacLevelHigh": bac,
+            "bacLevelCur": 0,
+            "lat": window.lat,
+            "lng": window.lng,
+            "timeStart": time,
+            "timeFinish": time,
+            "manualEnter": true
+        });
+
+        this.you.BACLevels.push(newBac);
+        people.localStorage.update(this.you);
+
+        console.log(newBac);
+    },
+
+    percentToDecimal: function(num){
+        num = num/100;
+        return num;
+    } 
+})
