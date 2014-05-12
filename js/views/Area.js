@@ -100,8 +100,13 @@ var Area = Backbone.View.extend({
 		$('#records').empty(); 
 		var userBacRecord = this.user.BACLevels.length - 1;
 
-		for(var i = userBacRecord; i >= 0; i--){
-			$('#records').append('<tr><td><a class="loadMap" lat="'+this.user.BACLevels[i].lat+'" lng="'+this.user.BACLevels[i].lng+'">'+this.user.BACLevels[i].bacLevelHigh+'</a></td><td>'+this.user.BACLevels[i].date+'</td></tr>');
+		if(this.user.BACLevels.length == 0){
+			$('#records').append('<tr><td colspan="2">No data</td></tr>');
+		}else{
+
+			for(var i = userBacRecord; i >= 0; i--){
+				$('#records').append('<tr><td><a class="loadMap" style="color: lightblue" lat="'+this.user.BACLevels[i].lat+'" lng="'+this.user.BACLevels[i].lng+'">'+this.user.BACLevels[i].bacLevelHigh+'</a></td><td>'+this.user.BACLevels[i].date+'</td></tr>');
+			}
 		}
 	}
 });
