@@ -21,12 +21,6 @@
         Alex DAvila
     </author>
 
-    <supports-screens android:anyDensity="true" android:resizeable="true" 
-    android:smallScreens="true" 
-    android:normalScreens="true" 
-    android:largeScreens="true" 
-    android:xlargeScreens="true" />
-
      <icon src="img/JayVeeLogo_V3.3-300x300.png" />
      <gap:splash src="img/JayVeeLogo_V3.3-300x300.png" gap:platform="andriod" width="320" height="480" />
 
